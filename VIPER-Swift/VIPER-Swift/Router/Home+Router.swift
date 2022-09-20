@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+protocol HomeRouter {
+    
+}
+
+class RealHomeRouter: HomeRouter {
+    
+}
+
+class MockHomeRouter: HomeRouter {
+    
+}

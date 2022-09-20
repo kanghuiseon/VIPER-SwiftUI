@@ -1,5 +1,5 @@
 //
-//  BookList+View.swift
+//  Home+View.swift
 //  VIPER-Swift
 //
 //  Created by 강희선 on 2022/09/16.
@@ -7,9 +7,13 @@
 
 import SwiftUI
 
-struct BookListView: View {
-    @ObservedObject var vm: ViewModel = .init()
+struct HomeView: View {
+    @ObservedObject var vm: ViewModel
     @Namespace var controlAnimation
+    
+    init(_ vm: ViewModel) {
+        self.vm = vm
+    }
     
     @ViewBuilder
     var body: some View {
@@ -25,6 +29,7 @@ struct BookListView: View {
         }
         .padding(.top, 20)
         .padding(.horizontal, 20)
+        .onAppear { vm.loadDatabox() }
     }
     
     var title: some View {
@@ -66,7 +71,7 @@ struct BookListView: View {
                 Spacer()
                 ForEach(vm.books, id: \.id) { book in
                     Text(book.name)
-                        .frame(width: 200, height: vm.randomHeight)
+                        .frame(width: 200, height: book.height ?? vm.randomHeight)
                         .background(
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(Color.random())
@@ -83,24 +88,30 @@ struct BookListView: View {
     }
 }
 
-extension BookListView.ViewModel {
+extension HomeView.ViewModel {
     struct Book {
         var id: String
         var name: String
         var rating: Float
+        var x: CGFloat?
+        var height: CGFloat?
+        var color: Color?
     }
 }
 
-extension BookListView {
+extension HomeView {
     class ViewModel: ObservableObject {
+        // MARK: infjected
+        let presenter: HomePresenter? = nil
+        
         // MARK: states
         @Published var selectedControl: String = "쌓아보기"
         
         // MARK: datas
         var controls: [String] = ["쌓아보기", "리스트형 보기"]
         var books: [Book] = [
-            .init(id: "0", name: "완전한 행복", rating: 4.5),
-            .init(id: "1", name: "소년이 온다", rating: 2.5),
+            .init(id: "0", name: "완전한 행복", rating: 4.5, x: -8),
+            .init(id: "1", name: "소년이 온다", rating: 2.5, x: 3),
             .init(id: "2", name: "28", rating: 5.0),
             .init(id: "3", name: "아가미", rating: 2.0),
             .init(id: "4", name: "채식주의자", rating: 5.0),
@@ -114,22 +125,42 @@ extension BookListView {
         var randomX: CGFloat {
             CGFloat(Double.random(in: -10.0...10.0))
         }
+        
+        init(container: DIContainer) {
+//            self.presenter = container.resolve(HomePresenter.self)
+//            presenter.setDelegate(self)
+        }
+        
+        // functions
+        func loadDatabox() {
+            
+        }
     }
 }
 
-struct BookListView_Previews: PreviewProvider {
+extension HomeView.ViewModel: HomePresenterDelegate {
+    func renderLoading() {
+        
+    }
+    
+    func render(_ error: Error) {
+        
+    }
+    
+    func getBookList() {
+        
+    }
+}
+
+struct HomeViewView_Previews: PreviewProvider {
     static var previews: some View {
-        BookListView()
+        HomeView(.init(container: .init()))
     }
 }
 
-extension Color {
-    static func random() -> Color {
-        Color(
-            red: 1,
-            green: .random(in: 0.4...0.6),
-            blue: .random(in: 0.4...0.7),
-            opacity: 0.6
-        )
-    }
+enum ViewState {
+    case none
+    case loading
+    case loaded
+    case error
 }

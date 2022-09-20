@@ -12,7 +12,8 @@ struct MainTab: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            BookListView()
+            // TODO: 고치기
+            HomeView(.init(container: .init()))
                 .tabItem {
                     Image(Tab.home.imageName)
                 }

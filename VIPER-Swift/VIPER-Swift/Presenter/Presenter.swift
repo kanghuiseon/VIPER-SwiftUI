@@ -2,19 +2,15 @@
 //  Presenter.swift
 //  VIPER-Swift
 //
-//  Created by 강희선 on 2022/09/02.
+//  Created by 강희선 on 2022/09/21.
 //
 
 import Foundation
 
-protocol Presenter {
+protocol PresenterDelegate: AnyObject {
+//    associatedtype ViewModel: Hashable
     
-}
-
-class RealPresenter: Presenter {
-    
-}
-
-struct MockPresenter: Presenter {
-    
+    func renderLoading()
+    func render(_ error: Error)
+//    func render(_ model: ViewModel)
 }
