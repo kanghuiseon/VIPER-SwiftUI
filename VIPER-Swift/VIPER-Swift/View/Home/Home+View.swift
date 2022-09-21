@@ -17,23 +17,32 @@ struct HomeView: View {
     
     @ViewBuilder
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            title
-            segmentControl
-            if vm.selectedControl == "쌓아보기" {
-                stack
-            } else {
-                list
+        VStack(spacing: 0) {
+            switch vm.viewState {
+            case .loading:
+                ProgressView()
+            case .loaded(let bookList):
+                VStack(alignment: .leading, spacing: 10) {
+                    title(bookList.count)
+                    segmentControl
+                    if vm.selectedControl == "쌓아보기" {
+                        stack(bookList: bookList)
+                    } else {
+                        list(bookList)
+                    }
+                    Spacer()
+                }
+                .padding(.top, 20)
+                .padding(.horizontal, 20)
+            default: EmptyView()
             }
-            Spacer()
         }
-        .padding(.top, 20)
-        .padding(.horizontal, 20)
         .onAppear { vm.loadDatabox() }
     }
     
-    var title: some View {
-        Text("전체 \(vm.books.count) 권")
+    @ViewBuilder
+    func title(_ bookCount: Int) -> some View {
+        Text("전체 \(bookCount) 권")
             .font(.system(size: 20).bold())
     }
     
@@ -64,91 +73,91 @@ struct HomeView: View {
         )
     }
     
-    var stack: some View {
+    @ViewBuilder
+    func stack(bookList: [BookModel]) -> some View {
         HStack(spacing: 0) {
             Spacer()
             VStack(spacing: 0) {
                 Spacer()
-                ForEach(vm.books, id: \.id) { book in
+                ForEach(bookList, id: \.id) { book in
                     Text(book.name)
-                        .frame(width: 200, height: book.height ?? vm.randomHeight)
+                        .frame(width: 200, height: book.height)
                         .background(
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(Color.random())
                         )
-                        .offset(x: vm.randomX)
+                        .offset(x: book.x)
                 }
             }
             Spacer()
         }
     }
     
-    var list: some View {
+    @ViewBuilder
+    func list(_ bookList: [BookModel]) -> some View {
         EmptyView()
     }
 }
 
+struct BookModel {
+    var id: String
+    var name: String
+    var rating: Float
+    var x: CGFloat
+    var height: CGFloat
+    var color: Color
+}
+
 extension HomeView.ViewModel {
-    struct Book {
-        var id: String
-        var name: String
-        var rating: Float
-        var x: CGFloat?
-        var height: CGFloat?
-        var color: Color?
+    enum ViewState {
+        case `none`
+        case loading
+        case loaded(_ bookList: [BookModel])
+        case error(_ error: Error)
     }
 }
 
 extension HomeView {
     class ViewModel: ObservableObject {
         // MARK: infjected
-        let presenter: HomePresenter? = nil
+        let presenter: HomePresenter
         
         // MARK: states
+        /// 뷰 상태
+        @Published var viewState: ViewState = .none
+        /// segmented control
         @Published var selectedControl: String = "쌓아보기"
         
         // MARK: datas
+        /// segmented control datas
         var controls: [String] = ["쌓아보기", "리스트형 보기"]
-        var books: [Book] = [
-            .init(id: "0", name: "완전한 행복", rating: 4.5, x: -8),
-            .init(id: "1", name: "소년이 온다", rating: 2.5, x: 3),
-            .init(id: "2", name: "28", rating: 5.0),
-            .init(id: "3", name: "아가미", rating: 2.0),
-            .init(id: "4", name: "채식주의자", rating: 5.0),
-            .init(id: "5", name: "연년세세", rating: 1.5),
-        ]
-        
-        var randomHeight: CGFloat {
-            CGFloat(Int.random(in: 18..<50))
-        }
-        
-        var randomX: CGFloat {
-            CGFloat(Double.random(in: -10.0...10.0))
-        }
         
         init(container: DIContainer) {
-//            self.presenter = container.resolve(HomePresenter.self)
-//            presenter.setDelegate(self)
+            self.presenter = container.resolve(HomePresenter.self)!
         }
         
         // functions
         func loadDatabox() {
-            
+            presenter.getBookList()
+        }
+        
+        func goDetail() {
+            presenter.goDetail()
         }
     }
 }
 
 extension HomeView.ViewModel: HomePresenterDelegate {
     func renderLoading() {
-        
+        viewState = .loading
     }
     
     func render(_ error: Error) {
-        
+        viewState = .error(error)
     }
     
-    func getBookList() {
-        
+    func render(_ bookList: [BookModel]) {
+        viewState = .loaded(bookList)
     }
 }
 
@@ -156,11 +165,4 @@ struct HomeViewView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView(.init(container: .init()))
     }
-}
-
-enum ViewState {
-    case none
-    case loading
-    case loaded
-    case error
 }

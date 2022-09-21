@@ -28,28 +28,34 @@ protocol ModuleFactory {
     func makeProfile() -> Module
 }
 
-class RealModuleFactory: ModuleFactory {
-    func makeAuthentication() -> Module {
-        
-    }
-    
-    func makeHome() -> Module {
-        
-    }
-    
-    func makeLibrary() -> Module {
-        
-    }
-    
-    func makeCharactor() -> Module {
-    
-    }
-    
-    func makeHistory() -> Module {
-        
-    }
-    
-    func makeProfile() -> Module {
-        
-    }
-}
+//class RealModuleFactory: ModuleFactory {
+//    let container: DIContainer
+//
+//    init(container: DIContainer) {
+//        self.container = container
+//    }
+//
+//    func makeAuthentication() -> Module {
+//
+//    }
+//
+//    func makeHome() -> Module {
+//
+//    }
+//
+//    func makeLibrary() -> Module {
+//
+//    }
+//
+//    func makeCharactor() -> Module {
+//
+//    }
+//
+//    func makeHistory() -> Module {
+//
+//    }
+//
+//    func makeProfile() -> Module {
+//
+//    }
+//}
