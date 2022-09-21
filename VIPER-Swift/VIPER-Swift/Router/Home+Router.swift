@@ -8,13 +8,18 @@
 import Foundation
 
 protocol HomeRouter {
-    
+    /// 책 상세보기 이동
+    func goDetail()
 }
 
 class RealHomeRouter: HomeRouter {
-    
+    func goDetail() {
+        
+    }
 }
 
 class MockHomeRouter: HomeRouter {
-    
+    func goDetail() {
+        
+    }
 }

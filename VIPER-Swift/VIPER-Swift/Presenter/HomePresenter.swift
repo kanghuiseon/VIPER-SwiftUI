@@ -6,35 +6,65 @@
 //
 
 import Foundation
+import Combine
 
 protocol HomePresenterDelegate: PresenterDelegate {
-    func getBookList()
+    func renderLoading()
+    func render(_ error: Error)
+    func render(_ bookList: [BookModel])
 }
     
-protocol HomePresenter {
+protocol HomePresenter: HomeInteractorDelegate {
     func setDelegate(_ delegate: HomePresenterDelegate)
+    func getBookList()
+    func goDetail()
 }
 
 class RealHomePresenter: HomePresenter {
-    let homeInteractor: HomeInteractor
-    let homeRouter: HomeRouter
+    private let interactor: HomeInteractor
+    private let router: HomeRouter
     private weak var delegate: HomePresenterDelegate?
+    private var cancellables = Set<AnyCancellable>()
     
     init(
         homeInteractor: HomeInteractor,
         homeRouter: HomeRouter
     ) {
-        self.homeInteractor = homeInteractor
-        self.homeRouter = homeRouter
+        self.interactor = homeInteractor
+        self.router = homeRouter
     }
     
     func setDelegate(_ delegate: HomePresenterDelegate) {
         self.delegate = delegate
     }
+    
+    func getBookList() {
+        interactor.getBookList()
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { _ in
+                
+            }, receiveValue: { _ in
+                
+            })
+            .store(in: &cancellables)
+            
+    }
+    
+    func goDetail() {
+        router.goDetail()
+    }
 }
 
-struct MockHomePresenter: HomePresenter {
+class MockHomePresenter: HomePresenter {
     func setDelegate(_ delegate: HomePresenterDelegate) {
+        
+    }
+    
+    func getBookList() {
+        
+    }
+    
+    func goDetail() {
         
     }
 }
