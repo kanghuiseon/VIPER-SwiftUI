@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:DIContainer/DIContainer.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "container:VIPER-Swift.xcodeproj">
    </FileRef>
 </Workspace>

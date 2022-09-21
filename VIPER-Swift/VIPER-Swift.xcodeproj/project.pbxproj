@@ -12,6 +12,8 @@
 		254596D528C232C000FF4A06 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254596D428C232C000FF4A06 /* HomePresenter.swift */; };
 		254596D728C232CA00FF4A06 /* UserInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254596D628C232CA00FF4A06 /* UserInteractor.swift */; };
 		254596DA28C380EC00FF4A06 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254596D928C380EC00FF4A06 /* LoginView.swift */; };
+		2545970128C3876A00FF4A06 /* DIContainer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2545970028C3876A00FF4A06 /* DIContainer.framework */; };
+		2545970228C3876A00FF4A06 /* DIContainer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2545970028C3876A00FF4A06 /* DIContainer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		254C050E28D0DE9400FE62EB /* AppBootLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254C050D28D0DE9400FE62EB /* AppBootLoader.swift */; };
 		254C051128D0E0DA00FE62EB /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 254C051028D0E0DA00FE62EB /* Swinject */; };
 		254C051728D0E6CB00FE62EB /* UserAuthorization+Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254C051628D0E6CB00FE62EB /* UserAuthorization+Router.swift */; };
@@ -34,6 +36,20 @@
 		25A8017D28C0F69100ED00E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25A8017C28C0F69100ED00E9 /* Assets.xcassets */; };
 		25A8018028C0F69100ED00E9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25A8017F28C0F69100ED00E9 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2545970328C3876A00FF4A06 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2545970228C3876A00FF4A06 /* DIContainer.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		254596D028C231C200FF4A06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2545970128C3876A00FF4A06 /* DIContainer.framework in Frameworks */,
 				254C051128D0E0DA00FE62EB /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,6 +299,7 @@
 				25A8017128C0F69000ED00E9 /* Sources */,
 				25A8017228C0F69000ED00E9 /* Frameworks */,
 				25A8017328C0F69000ED00E9 /* Resources */,
+				2545970328C3876A00FF4A06 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

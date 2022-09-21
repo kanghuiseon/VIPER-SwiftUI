@@ -8,10 +8,6 @@
 import Foundation
 import Combine
 
-struct BookResponse {
-    
-}
-
 protocol HomeInteractorDelegate: AnyObject {
     
 }
@@ -20,7 +16,7 @@ protocol HomeInteractor {
     /// delegate setting
     func setDelegate(_ delegate: HomeInteractorDelegate)
     /// 읽은 책리스트 가져오기
-    func getBookList() -> AnyPublisher<BookResponse, Error>
+    func getBookList()
 }
 
 class RealHomeInteractor: HomeInteractor {
@@ -31,11 +27,8 @@ class RealHomeInteractor: HomeInteractor {
         self.delegate = delegate
     }
     
-    func getBookList() -> AnyPublisher<BookResponse, Error> {
-        Future<BookResponse, Error> { promise in
-            
-        }
-        .eraseToAnyPublisher()
+    func getBookList() {
+        
     }
 }
 
@@ -44,10 +37,7 @@ class MockHomeInteractor: HomeInteractor {
         
     }
     
-    func getBookList() -> AnyPublisher<BookResponse, Error> {
-        Future<BookResponse, Error> { promise in
-            
-        }
-        .eraseToAnyPublisher()
+    func getBookList() {
+        
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DIContainer
 
 struct LoginView: View {
     var body: some View {
