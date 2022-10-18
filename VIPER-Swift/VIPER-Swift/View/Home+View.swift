@@ -56,7 +56,7 @@ struct HomeView: View {
                     .background {
                         if vm.selectedControl == control {
                             RoundedRectangle(cornerRadius: 20)
-                                .fill(.pink)
+                                .fill(Color(hex: "a648ff")!)
                                 .opacity(0.8)
                                 .matchedGeometryEffect(id: "Control", in: controlAnimation)
                         }
@@ -74,17 +74,17 @@ struct HomeView: View {
     }
     
     @ViewBuilder
-    func stack(bookList: [BookModel]) -> some View {
+    func stack(bookList: BookModelList) -> some View {
         HStack(spacing: 0) {
             Spacer()
             VStack(spacing: 0) {
                 Spacer()
                 ForEach(bookList, id: \.id) { book in
                     Text(book.name)
-                        .frame(width: 200, height: book.height)
+                        .frame(width: 300, height: book.height)
                         .background(
                             RoundedRectangle(cornerRadius: 10)
-                                .fill(Color.random())
+                                .fill(book.color)
                         )
                         .offset(x: book.x)
                 }
@@ -95,33 +95,84 @@ struct HomeView: View {
     
     @ViewBuilder
     func list(_ bookList: [BookModel]) -> some View {
+        let gridItems: [GridItem] = [
+            .init(.flexible(minimum: 0, maximum: .infinity)),
+            .init(.flexible(minimum: 0, maximum: .infinity)),
+            .init(.flexible(minimum: 0, maximum: .infinity)),
+        ]
+        
+        LazyVGrid(columns: gridItems) {
+            ForEach(bookList, id: \.id) { book in
+                bookCard(
+                    imageName: book.imageName,
+                    title: book.name,
+                    writer: book.writer,
+                    rating: book.rating
+                )
+            }
+        }
+        .padding(.top, 20)
+    }
+    
+    @ViewBuilder
+    func bookCard(
+        imageName: String,
+        title: String,
+        writer: String,
+        rating: Float
+    ) -> some View {
+        let imageWidth = UIScreen.main.bounds.width / 3 - 20
+        Button(action: {
+            
+        }) {
+            VStack(spacing: 5) {
+                Image(imageName)
+                    .resizable()
+                    .frame(width: imageWidth, height: imageWidth * 3/2)
+                Text(title)
+                    .foregroundColor(.black)
+                    .lineLimit(1)
+                Text(writer)
+                    .foregroundColor(.black)
+                ratingStar(0.4)
+            }
+        }
+        
+    }
+    
+    @ViewBuilder
+    func ratingStar(_ rating: CGFloat) -> some View {
         EmptyView()
     }
 }
 
-struct BookModel {
-    var id: String
-    var name: String
-    var rating: Float
-    var x: CGFloat
-    var height: CGFloat
-    var color: Color
+extension HomeView {
+    typealias BookModelList = [BookModel]
+    
+    struct BookModel {
+        var id: Int
+        var name: String
+        var imageName: String
+        var writer: String
+        var rating: Float
+        var x: CGFloat
+        var height: CGFloat
+        var color: Color
+    }
 }
 
 extension HomeView.ViewModel {
     enum ViewState {
         case `none`
         case loading
-        case loaded(_ bookList: [BookModel])
+        case loaded(_ bookList: BookModelList)
         case error(_ error: Error)
     }
 }
 
 extension HomeView {
     class ViewModel: ObservableObject {
-        // MARK: infjected
-        let presenter: HomePresenter
-        
+        typealias BookModelList = HomeView.BookModelList
         // MARK: states
         /// 뷰 상태
         @Published var viewState: ViewState = .none
@@ -132,37 +183,24 @@ extension HomeView {
         /// segmented control datas
         var controls: [String] = ["쌓아보기", "리스트형 보기"]
         
-        init(container: DIContainer) {
-            self.presenter = container.resolve(HomePresenter.self)!
-        }
-        
-        // functions
         func loadDatabox() {
-            presenter.getBookList()
+            viewState = .loaded([
+                .init(id: 0, name: "연년세세 - 황정은 연작소설", imageName: "sese", writer: "황정은", rating: 4, x: 3, height: 20, color: Color(hex: "f1dcff")!),
+                .init(id: 1, name: "완전한 행복(정유정 장편소설)", imageName: "happy", writer: "정유정", rating: 5, x: -8, height: 80, color: Color(hex: "e2b9ff")!),
+                .init(id: 2, name: "소년이 온다(한강 장편소설)", imageName: "boy", writer: "한강 ", rating: 4.5, x: 10, height: 25, color: Color(hex: "a648ff")!),
+                .init(id: 3, name: "28 (정유정 장편소설)", imageName: "28", writer: "정유정", rating: 3.0, x: -10, height: 50, color: Color(hex: "e2b9ff")!),
+                .init(id: 4, name: "채식주의자 (한강 연작소설)", imageName: "55555216", writer: "한강", rating: 5.0, x: -8, height: 35, color: Color(hex: "9314ff")!)
+            ])
         }
         
-        func goDetail() {
-            presenter.goDetail()
+        func getBookInfo(_ id: String) {
+            
         }
     }
 }
 
-extension HomeView.ViewModel: HomePresenterDelegate {
-    func renderLoading() {
-        viewState = .loading
-    }
-    
-    func render(_ error: Error) {
-        viewState = .error(error)
-    }
-    
-    func render(_ bookList: [BookModel]) {
-        viewState = .loaded(bookList)
-    }
-}
-
-struct HomeViewView_Previews: PreviewProvider {
+struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(.init(container: .init()))
+        HomeView(.init())
     }
 }

@@ -13,16 +13,15 @@ struct MainTab: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             // TODO: 고치기
-            HomeView(.init(container: .init()))
+            HomeView(.init())
                 .tabItem {
                     Image(Tab.home.imageName)
                 }
                 .tag(Tab.home.id)
             
-            LibraryView()
+            LibraryView(.init())
                 .tabItem {
                     Image(Tab.library.imageName)
-                        .foregroundColor(.pink)
                 }
                 .tag(Tab.library.id)
                 
