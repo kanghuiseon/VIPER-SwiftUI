@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21279" systemVersion="22A380" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Book" representedClassName="Book" syncable="YES" codeGenerationType="class">
+        <attribute name="content" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="image_name" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="writer" optional="YES" attributeType="String"/>
+        <attribute name="x" optional="YES"/>
+        <relationship name="read" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Read" inverseName="book" inverseEntity="Read"/>
+    </entity>
+    <entity name="Read" representedClassName="Read" syncable="YES">
+        <attribute name="end_date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="start_date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="read" inverseEntity="Book"/>
+        <relationship name="user_id" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="User" inverseName="read" inverseEntity="User"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="age" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="gender" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="read" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Read" inverseName="user_id" inverseEntity="Read"/>
+    </entity>
+</model>

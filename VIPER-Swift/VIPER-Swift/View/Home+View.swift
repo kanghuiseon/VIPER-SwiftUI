@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Swinject
 
 struct HomeView: View {
     @ObservedObject var vm: ViewModel
@@ -18,6 +19,20 @@ struct HomeView: View {
     @ViewBuilder
     var body: some View {
         VStack(spacing: 0) {
+            HStack(spacing: 0) {
+                Spacer()
+                Button(
+                    action: {
+                        vm.addBook()
+                    },
+                    label: {
+                        Image("plus")
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                            .padding(.horizontal, 20)
+                    }
+                )
+            }
             switch vm.viewState {
             case .loading:
                 ProgressView()
@@ -34,8 +49,10 @@ struct HomeView: View {
                 }
                 .padding(.top, 20)
                 .padding(.horizontal, 20)
+                
             default: EmptyView()
             }
+            Spacer()
         }
         .onAppear { vm.loadDatabox() }
     }
@@ -150,7 +167,7 @@ extension HomeView {
     typealias BookModelList = [BookModel]
     
     struct BookModel {
-        var id: Int
+        var id: UUID
         var name: String
         var imageName: String
         var writer: String
@@ -159,6 +176,8 @@ extension HomeView {
         var height: CGFloat
         var color: Color
     }
+    
+    
 }
 
 extension HomeView.ViewModel {
@@ -170,9 +189,17 @@ extension HomeView.ViewModel {
     }
 }
 
+extension HomeView.ViewModel: HomeViewDelegate {
+    func displayBookList(_ bookList: [HomeView.BookModel]) {
+        viewState = .loaded(bookList)
+    }
+}
+
 extension HomeView {
     class ViewModel: ObservableObject {
         typealias BookModelList = HomeView.BookModelList
+        let presenter: HomePresenter
+        
         // MARK: states
         /// 뷰 상태
         @Published var viewState: ViewState = .none
@@ -183,17 +210,23 @@ extension HomeView {
         /// segmented control datas
         var controls: [String] = ["쌓아보기", "리스트형 보기"]
         
+        init(container: Container) {
+            self.presenter = container.resolve(HomePresenter.self) ?? RealHomePresenter(container)
+        }
+        
         func loadDatabox() {
-            viewState = .loaded([
-                .init(id: 0, name: "연년세세 - 황정은 연작소설", imageName: "sese", writer: "황정은", rating: 4, x: 3, height: 20, color: Color(hex: "f1dcff")!),
-                .init(id: 1, name: "완전한 행복(정유정 장편소설)", imageName: "happy", writer: "정유정", rating: 5, x: -8, height: 80, color: Color(hex: "e2b9ff")!),
-                .init(id: 2, name: "소년이 온다(한강 장편소설)", imageName: "boy", writer: "한강 ", rating: 4.5, x: 10, height: 25, color: Color(hex: "a648ff")!),
-                .init(id: 3, name: "28 (정유정 장편소설)", imageName: "28", writer: "정유정", rating: 3.0, x: -10, height: 50, color: Color(hex: "e2b9ff")!),
-                .init(id: 4, name: "채식주의자 (한강 연작소설)", imageName: "55555216", writer: "한강", rating: 5.0, x: -8, height: 35, color: Color(hex: "9314ff")!)
-            ])
+            presenter.fetchBookList()
         }
         
         func getBookInfo(_ id: String) {
+            
+        }
+        
+        func addBook() {
+            presenter.pushToAddNewBook()
+        }
+        
+        func goDetail(bookID: Int) {
             
         }
     }
@@ -201,6 +234,6 @@ extension HomeView {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(.init())
+        HomeView(.init(container: .preview))
     }
 }

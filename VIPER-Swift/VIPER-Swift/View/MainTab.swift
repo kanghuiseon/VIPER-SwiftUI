@@ -6,14 +6,19 @@
 //
 
 import SwiftUI
+import Swinject
 
 struct MainTab: View {
     @State private var selectedTab: String = Tab.home.id
+    let container: Container
+    
+    init(_ container: Container) {
+        self.container = container
+    }
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            // TODO: 고치기
-            HomeView(.init())
+            HomeView(.init(container: container))
                 .tabItem {
                     Image(Tab.home.imageName)
                 }
@@ -24,7 +29,6 @@ struct MainTab: View {
                     Image(Tab.library.imageName)
                 }
                 .tag(Tab.library.id)
-                
             
             CharacterView()
                 .tabItem {
@@ -80,6 +84,6 @@ extension MainTab {
 
 struct MainTab_Previews: PreviewProvider {
     static var previews: some View {
-        MainTab()
+        MainTab(.preview)
     }
 }

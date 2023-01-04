@@ -7,19 +7,26 @@
 
 import UIKit
 import SwiftUI
+import Swinject
+import Combine
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
+    var cancellables = Set<AnyCancellable>()
+    private var coordinator: Coordinator?
     
     func scene(
         _ scene: UIScene,
         willConnectTo session: UISceneSession,
         options connectionOptions: UIScene.ConnectionOptions
     ) {
-        if let windowScene = scene as? UIWindowScene {
-            let appLoader = AppLoader(windowScene: windowScene)
-            let window = appLoader.load()
-            self.window = window
-        }
+        guard let windowScene = scene as? UIWindowScene else { return }
+        
+        let window = UIWindow(windowScene: windowScene)
+        self.window = window
+        self.coordinator = AppCoordinator(window: window)
+        self.coordinator?.start()
+            .sink(receiveValue: { _ in })
+            .store(in: &cancellables)
     }
 }

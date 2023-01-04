@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2526D9F1293CD7BA00482985 /* AddBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2526D9F0293CD7BA00482985 /* AddBookView.swift */; };
 		254596D128C231C200FF4A06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254596D028C231C200FF4A06 /* AppDelegate.swift */; };
 		254596D328C2323E00FF4A06 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254596D228C2323E00FF4A06 /* SceneDelegate.swift */; };
 		254C051128D0E0DA00FE62EB /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 254C051028D0E0DA00FE62EB /* Swinject */; };
@@ -16,34 +17,73 @@
 		254C052C28D4AA0B00FE62EB /* Character+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254C052B28D4AA0B00FE62EB /* Character+View.swift */; };
 		254C052E28D4AA1500FE62EB /* History+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254C052D28D4AA1500FE62EB /* History+View.swift */; };
 		254C053028D4AA1C00FE62EB /* Profile+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254C052F28D4AA1C00FE62EB /* Profile+View.swift */; };
+		2568EE13293F97A80081D162 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2568EE12293F97A80081D162 /* KeychainWrapper.swift */; };
+		2568EE16293F9B8B0081D162 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 2568EE15293F9B8B0081D162 /* SwiftKeychainWrapper */; };
 		2569422528DA0AC9008FEC81 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2569422428DA0AC9008FEC81 /* Color+Hex.swift */; };
 		2569422D28DA18A9008FEC81 /* AppLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2569422C28DA18A9008FEC81 /* AppLoader.swift */; };
+		257D546D293B6CB80001BC58 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257D546C293B6CB80001BC58 /* Coordinator.swift */; };
+		257D546F293B820A0001BC58 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257D546E293B820A0001BC58 /* AppCoordinator.swift */; };
+		257D5471293B83550001BC58 /* OnBoardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257D5470293B83550001BC58 /* OnBoardingCoordinator.swift */; };
+		257D5473293BA0910001BC58 /* OnBoarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257D5472293BA0910001BC58 /* OnBoarding.swift */; };
+		257D5475293BA2FC0001BC58 /* OnBoarding+Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257D5474293BA2FC0001BC58 /* OnBoarding+Presenter.swift */; };
+		257D5477293BB7E40001BC58 /* MainTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257D5476293BB7E40001BC58 /* MainTabCoordinator.swift */; };
 		25981F8F28FD8AD100A50FCF /* BookDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25981F8E28FD8AD100A50FCF /* BookDetail.swift */; };
 		25981F9128FEEEDC00A50FCF /* View+isHidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25981F9028FEEEDC00A50FCF /* View+isHidden.swift */; };
 		25A8017B28C0F69000ED00E9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A8017A28C0F69000ED00E9 /* ContentView.swift */; };
 		25A8017D28C0F69100ED00E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25A8017C28C0F69100ED00E9 /* Assets.xcassets */; };
 		25A8018028C0F69100ED00E9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25A8017F28C0F69100ED00E9 /* Preview Assets.xcassets */; };
+		25E9496A2913F8910087D8F0 /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E949692913F8910087D8F0 /* DataHandler.swift */; };
+		25E94973292A755E0087D8F0 /* BookJeok.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 25E94971292A755E0087D8F0 /* BookJeok.xcdatamodeld */; };
+		25E94987292A7D1B0087D8F0 /* Book+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E94981292A7D1B0087D8F0 /* Book+CoreDataClass.swift */; };
+		25E94988292A7D1B0087D8F0 /* Read+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E94982292A7D1B0087D8F0 /* Read+CoreDataProperties.swift */; };
+		25E94989292A7D1B0087D8F0 /* Read+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E94983292A7D1B0087D8F0 /* Read+CoreDataClass.swift */; };
+		25E9498A292A7D1B0087D8F0 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E94984292A7D1B0087D8F0 /* User+CoreDataProperties.swift */; };
+		25E9498B292A7D1B0087D8F0 /* Book+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E94985292A7D1B0087D8F0 /* Book+CoreDataProperties.swift */; };
+		25E9498C292A7D1B0087D8F0 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E94986292A7D1B0087D8F0 /* User+CoreDataClass.swift */; };
+		25E94990292A7E870087D8F0 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E9498F292A7E870087D8F0 /* Repository.swift */; };
+		25E94993292A81C70087D8F0 /* Home+Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E94992292A81C70087D8F0 /* Home+Presenter.swift */; };
+		25E94995292A884C0087D8F0 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E94994292A884C0087D8F0 /* Container.swift */; };
+		25E94998292A88AD0087D8F0 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E94997292A88AD0087D8F0 /* HomeCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2526D9F0293CD7BA00482985 /* AddBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookView.swift; sourceTree = "<group>"; };
 		254596D028C231C200FF4A06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		254596D228C2323E00FF4A06 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		254596D828C2353600FF4A06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		2545970028C3876A00FF4A06 /* DIContainer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DIContainer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		254C051E28D4A7AD00FE62EB /* MainTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTab.swift; sourceTree = "<group>"; };
 		254C052728D4A9E000FE62EB /* Home+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Home+View.swift"; sourceTree = "<group>"; };
 		254C052928D4A9EE00FE62EB /* Library+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Library+View.swift"; sourceTree = "<group>"; };
 		254C052B28D4AA0B00FE62EB /* Character+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+View.swift"; sourceTree = "<group>"; };
 		254C052D28D4AA1500FE62EB /* History+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "History+View.swift"; sourceTree = "<group>"; };
 		254C052F28D4AA1C00FE62EB /* Profile+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profile+View.swift"; sourceTree = "<group>"; };
+		2568EE12293F97A80081D162 /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		2569422428DA0AC9008FEC81 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		2569422C28DA18A9008FEC81 /* AppLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLoader.swift; sourceTree = "<group>"; };
+		257D546C293B6CB80001BC58 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		257D546E293B820A0001BC58 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		257D5470293B83550001BC58 /* OnBoardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingCoordinator.swift; sourceTree = "<group>"; };
+		257D5472293BA0910001BC58 /* OnBoarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoarding.swift; sourceTree = "<group>"; };
+		257D5474293BA2FC0001BC58 /* OnBoarding+Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnBoarding+Presenter.swift"; sourceTree = "<group>"; };
+		257D5476293BB7E40001BC58 /* MainTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabCoordinator.swift; sourceTree = "<group>"; };
 		25981F8E28FD8AD100A50FCF /* BookDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetail.swift; sourceTree = "<group>"; };
 		25981F9028FEEEDC00A50FCF /* View+isHidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+isHidden.swift"; sourceTree = "<group>"; };
 		25A8017528C0F69000ED00E9 /* VIPER-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VIPER-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		25A8017A28C0F69000ED00E9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		25A8017C28C0F69100ED00E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		25A8017F28C0F69100ED00E9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		25E949692913F8910087D8F0 /* DataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
+		25E94972292A755E0087D8F0 /* BookJeok.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BookJeok.xcdatamodel; sourceTree = "<group>"; };
+		25E94981292A7D1B0087D8F0 /* Book+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataClass.swift"; sourceTree = "<group>"; };
+		25E94982292A7D1B0087D8F0 /* Read+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Read+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		25E94983292A7D1B0087D8F0 /* Read+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Read+CoreDataClass.swift"; sourceTree = "<group>"; };
+		25E94984292A7D1B0087D8F0 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		25E94985292A7D1B0087D8F0 /* Book+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		25E94986292A7D1B0087D8F0 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		25E9498F292A7E870087D8F0 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		25E94992292A81C70087D8F0 /* Home+Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Home+Presenter.swift"; sourceTree = "<group>"; };
+		25E94994292A884C0087D8F0 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
+		25E94997292A88AD0087D8F0 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2568EE16293F9B8B0081D162 /* SwiftKeychainWrapper in Frameworks */,
 				254C051128D0E0DA00FE62EB /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -61,8 +102,10 @@
 		254596CC28C230C600FF4A06 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				257D5472293BA0910001BC58 /* OnBoarding.swift */,
 				254C051E28D4A7AD00FE62EB /* MainTab.swift */,
 				254C052728D4A9E000FE62EB /* Home+View.swift */,
+				2526D9F0293CD7BA00482985 /* AddBookView.swift */,
 				25981F8E28FD8AD100A50FCF /* BookDetail.swift */,
 				254C052928D4A9EE00FE62EB /* Library+View.swift */,
 				254C052B28D4AA0B00FE62EB /* Character+View.swift */,
@@ -75,7 +118,6 @@
 		254596FF28C3876000FF4A06 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2545970028C3876A00FF4A06 /* DIContainer.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -84,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				2569422E28DA18B4008FEC81 /* Booting */,
+				2568EE12293F97A80081D162 /* KeychainWrapper.swift */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -129,11 +172,17 @@
 			children = (
 				254596D828C2353600FF4A06 /* Info.plist */,
 				254C053728D4CA0800FE62EB /* System */,
+				25E949682912A7380087D8F0 /* Module */,
+				25E94974292A7CE90087D8F0 /* Entity */,
+				25E9498E292A7D5B0087D8F0 /* Repository */,
+				25E94996292A88A30087D8F0 /* Coordinator */,
+				25E94991292A81AF0087D8F0 /* Presenter */,
 				254596CC28C230C600FF4A06 /* View */,
 				2569422328DA0ABE008FEC81 /* Util */,
 				25A8017A28C0F69000ED00E9 /* ContentView.swift */,
 				25A8017C28C0F69100ED00E9 /* Assets.xcassets */,
 				25A8017E28C0F69100ED00E9 /* Preview Content */,
+				25E94971292A755E0087D8F0 /* BookJeok.xcdatamodeld */,
 			);
 			path = "VIPER-Swift";
 			sourceTree = "<group>";
@@ -144,6 +193,57 @@
 				25A8017F28C0F69100ED00E9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		25E949682912A7380087D8F0 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				25E949692913F8910087D8F0 /* DataHandler.swift */,
+				25E94994292A884C0087D8F0 /* Container.swift */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		25E94974292A7CE90087D8F0 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				25E94983292A7D1B0087D8F0 /* Read+CoreDataClass.swift */,
+				25E94982292A7D1B0087D8F0 /* Read+CoreDataProperties.swift */,
+				25E94981292A7D1B0087D8F0 /* Book+CoreDataClass.swift */,
+				25E94985292A7D1B0087D8F0 /* Book+CoreDataProperties.swift */,
+				25E94986292A7D1B0087D8F0 /* User+CoreDataClass.swift */,
+				25E94984292A7D1B0087D8F0 /* User+CoreDataProperties.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		25E9498E292A7D5B0087D8F0 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				25E9498F292A7E870087D8F0 /* Repository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		25E94991292A81AF0087D8F0 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				257D5474293BA2FC0001BC58 /* OnBoarding+Presenter.swift */,
+				25E94992292A81C70087D8F0 /* Home+Presenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		25E94996292A88A30087D8F0 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				257D546C293B6CB80001BC58 /* Coordinator.swift */,
+				257D546E293B820A0001BC58 /* AppCoordinator.swift */,
+				257D5470293B83550001BC58 /* OnBoardingCoordinator.swift */,
+				257D5476293BB7E40001BC58 /* MainTabCoordinator.swift */,
+				25E94997292A88AD0087D8F0 /* HomeCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,6 +264,7 @@
 			name = "VIPER-Swift";
 			packageProductDependencies = (
 				254C051028D0E0DA00FE62EB /* Swinject */,
+				2568EE15293F9B8B0081D162 /* SwiftKeychainWrapper */,
 			);
 			productName = "VIPER-Swift";
 			productReference = 25A8017528C0F69000ED00E9 /* VIPER-Swift.app */;
@@ -195,6 +296,7 @@
 			mainGroup = 25A8016C28C0F69000ED00E9;
 			packageReferences = (
 				254C050F28D0E0DA00FE62EB /* XCRemoteSwiftPackageReference "Swinject" */,
+				2568EE14293F9B8B0081D162 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 			);
 			productRefGroup = 25A8017628C0F69000ED00E9 /* Products */;
 			projectDirPath = "";
@@ -224,17 +326,37 @@
 			files = (
 				254C052E28D4AA1500FE62EB /* History+View.swift in Sources */,
 				254596D128C231C200FF4A06 /* AppDelegate.swift in Sources */,
+				257D546D293B6CB80001BC58 /* Coordinator.swift in Sources */,
+				2568EE13293F97A80081D162 /* KeychainWrapper.swift in Sources */,
+				25E94998292A88AD0087D8F0 /* HomeCoordinator.swift in Sources */,
+				25E94987292A7D1B0087D8F0 /* Book+CoreDataClass.swift in Sources */,
 				254C052C28D4AA0B00FE62EB /* Character+View.swift in Sources */,
+				257D546F293B820A0001BC58 /* AppCoordinator.swift in Sources */,
+				25E9496A2913F8910087D8F0 /* DataHandler.swift in Sources */,
+				25E94990292A7E870087D8F0 /* Repository.swift in Sources */,
+				257D5477293BB7E40001BC58 /* MainTabCoordinator.swift in Sources */,
 				254C052828D4A9E000FE62EB /* Home+View.swift in Sources */,
 				25A8017B28C0F69000ED00E9 /* ContentView.swift in Sources */,
 				25981F8F28FD8AD100A50FCF /* BookDetail.swift in Sources */,
 				254C051F28D4A7AD00FE62EB /* MainTab.swift in Sources */,
 				254C053028D4AA1C00FE62EB /* Profile+View.swift in Sources */,
+				25E9498A292A7D1B0087D8F0 /* User+CoreDataProperties.swift in Sources */,
 				254596D328C2323E00FF4A06 /* SceneDelegate.swift in Sources */,
+				25E94995292A884C0087D8F0 /* Container.swift in Sources */,
+				257D5471293B83550001BC58 /* OnBoardingCoordinator.swift in Sources */,
 				2569422D28DA18A9008FEC81 /* AppLoader.swift in Sources */,
+				25E94988292A7D1B0087D8F0 /* Read+CoreDataProperties.swift in Sources */,
 				25981F9128FEEEDC00A50FCF /* View+isHidden.swift in Sources */,
 				254C052A28D4A9EE00FE62EB /* Library+View.swift in Sources */,
+				257D5473293BA0910001BC58 /* OnBoarding.swift in Sources */,
+				25E94989292A7D1B0087D8F0 /* Read+CoreDataClass.swift in Sources */,
 				2569422528DA0AC9008FEC81 /* Color+Hex.swift in Sources */,
+				257D5475293BA2FC0001BC58 /* OnBoarding+Presenter.swift in Sources */,
+				2526D9F1293CD7BA00482985 /* AddBookView.swift in Sources */,
+				25E9498B292A7D1B0087D8F0 /* Book+CoreDataProperties.swift in Sources */,
+				25E94973292A755E0087D8F0 /* BookJeok.xcdatamodeld in Sources */,
+				25E94993292A81C70087D8F0 /* Home+Presenter.swift in Sources */,
+				25E9498C292A7D1B0087D8F0 /* User+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,6 +567,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		2568EE14293F9B8B0081D162 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -453,7 +583,25 @@
 			package = 254C050F28D0E0DA00FE62EB /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
 		};
+		2568EE15293F9B8B0081D162 /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2568EE14293F9B8B0081D162 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
+		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		25E94971292A755E0087D8F0 /* BookJeok.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				25E94972292A755E0087D8F0 /* BookJeok.xcdatamodel */,
+			);
+			currentVersion = 25E94972292A755E0087D8F0 /* BookJeok.xcdatamodel */;
+			path = BookJeok.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 25A8016D28C0F69000ED00E9 /* Project object */;
 }
